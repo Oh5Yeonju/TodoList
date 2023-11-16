@@ -28,28 +28,19 @@ export default function TodoList() {
     fetchTodoData();
   }, []);
 
-  const getListData = () => {
-    return todoListData.slice(0, limit).map(item => (
-      <ListItem key={item._id}>
-        <CheckboxContainer>
-          <input
-            type="checkbox"
-            id={`checkbox-${item._id}`}
-            checked={item.done === true}
-            onChange={e => handleCheckboxChange(e, item)}
-          />
-          <label htmlFor={`checkbox-${item._id}`}></label>
-        </CheckboxContainer>
-        <TitleContentContainer>
-          <StyledLink to={`info?_id=${item._id}`}>{item.title}</StyledLink>
-          <ContentParagraph>{item.content}</ContentParagraph>
-        </TitleContentContainer>
-        <Button className="view-btn" onClick={() => navigate(`info?_id=${item._id}`)}>
-          VIEW
-        </Button>
-      </ListItem>
-    ));
-  };
+  const getDoneListData = async () => {
+    // 목표: todoListData에 item.done이 true 값만 담기도록 한다.
+    const data = await getTodoList();
+    const newData = data.filter(item => item.done);
+    setTodoListData(newData);
+  }
+  
+  const getShouldDoListData = async () => {
+    // 목표: todoListData에 item.done이 false 값만 담기도록 한다.
+    const data = await getTodoList();
+    const newData = data.filter(item => !item.done);
+    setTodoListData(newData);
+  }
 
   const handleCheckboxChange = async (event: React.ChangeEvent<HTMLInputElement>, item: TodoItem) => {
     const newDoneValue = event.target.checked;
@@ -66,7 +57,33 @@ export default function TodoList() {
     <Page>
       <Title>To Do List</Title>
       <div id="content">
-        <List className="todolist">{getListData()}</List>
+        <div>
+          <button onClick={fetchTodoData}>전체</button>
+          <button onClick={getDoneListData}>완료한 일</button>
+          <button onClick={getShouldDoListData}>할 일</button>
+        </div>
+        <List className="todolist">
+          {todoListData.slice(0, limit).map(item => (
+            <ListItem key={item._id}>
+              <CheckboxContainer>
+                <input
+                  type="checkbox"
+                  id={`checkbox-${item._id}`}
+                  checked={item.done === true}
+                  onChange={e => handleCheckboxChange(e, item)}
+                />
+                <label htmlFor={`checkbox-${item._id}`}></label>
+              </CheckboxContainer>
+              <TitleContentContainer>
+                <StyledLink to={`info?_id=${item._id}`}>{item.title}</StyledLink>
+                <ContentParagraph>{item.content}</ContentParagraph>
+              </TitleContentContainer>
+              <Button className="view-btn" onClick={() => navigate(`info?_id=${item._id}`)}>
+                VIEW
+              </Button>
+            </ListItem>
+          ))};
+        </List>
         {totalNum > 0 && (
           <Button className="viewMore-btn" disabled={limit >= totalNum} onClick={handleViewMore}>
             View More...
