@@ -17,6 +17,8 @@ export default function TodoList() {
   const [limit, setLimit] = useState<number>(4);
   const navigate = useNavigate();
 
+  const [selectFilter, setSelectFilter] = useState('0');
+
   const fetchTodoData = async () => {
     const data = await getTodoList();
     const total = await getTotalNum();
@@ -52,11 +54,25 @@ export default function TodoList() {
   const handleViewMore = () => {
     setLimit(prev => prev + 4);
   };
+  const onhandleSelectFilter = (e) => {
+    setSelectFilter(e.target.value);
+
+    // if(selectFilter == '0') {
+    //   {todoListData.sort((a,b) => new Date(a.updatedAt) - new Date(b.updatedAt))}
+    // } else if(selectFilter == '1'){
+    //   {todoListData.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))}
+    // }
+  }
 
   return (
     <Page>
       <Title>To Do List</Title>
       <div id="content">
+        <select value={selectFilter} onChange={onhandleSelectFilter} >
+          <option value="0">최신순</option>
+          <option value="1">오래된순</option>
+        </select>
+
         <div>
           <button onClick={fetchTodoData}>전체</button>
           <button onClick={getDoneListData}>완료한 일</button>
