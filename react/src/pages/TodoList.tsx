@@ -18,6 +18,9 @@ export default function TodoList() {
   const navigate = useNavigate();
 
   const [selectFilter, setSelectFilter] = useState('0');
+  
+  // input값
+  const [searchInput, setSearchInput] = useState('');
 
   const fetchTodoData = async () => {
     const data = await getTodoList();
@@ -64,9 +67,24 @@ export default function TodoList() {
     }
   }
 
+  const getInputValue = (e) => {
+    setSearchInput(e.target.value.toLowerCase());
+  }
+
+  const searchTitle = () => {
+    const searchResult = todoListData.filter((item) => item.title.toLowerCase().includes(searchInput));
+    setTodoListData(searchResult);
+  }
+
   return (
     <Page>
       <Title>To Do List</Title>
+      <input 
+        type="text"
+        onChange={getInputValue} 
+      />
+      <button onClick={searchTitle}>버튼</button>
+
       <div id="content">
         <select value={selectFilter} onChange={onhandleSelectFilter} >
           <option value="0">최신순</option>
