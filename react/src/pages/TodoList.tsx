@@ -57,11 +57,11 @@ export default function TodoList() {
   const onhandleSelectFilter = (e) => {
     setSelectFilter(e.target.value);
 
-    // if(selectFilter == '0') {
-    //   {todoListData.sort((a,b) => new Date(a.updatedAt) - new Date(b.updatedAt))}
-    // } else if(selectFilter == '1'){
-    //   {todoListData.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))}
-    // }
+    if(e.target.value == '0') { 
+      {todoListData.sort((a,b) => new Date(a.updatedAt) - new Date(b.updatedAt))}
+    } else {
+      {todoListData.sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt))}
+    }
   }
 
   return (

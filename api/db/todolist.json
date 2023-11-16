@@ -1,27 +1,11 @@
 {
   "items": [
     {
-      "_id": 144,
-      "title": "저녁운동",
-      "content": "런데이",
-      "createdAt": "2023.11.12 19:49:26",
-      "updatedAt": "2023.11.16 15:33:52",
-      "done": false
-    },
-    {
       "_id": 145,
       "title": "리팩토링",
       "content": "수정 내용 push",
       "createdAt": "2023.11.12 19:50:32",
-      "updatedAt": "2023.11.16 15:33:30",
-      "done": true
-    },
-    {
-      "_id": 148,
-      "title": "수정",
-      "content": "123",
-      "createdAt": "2023.11.12 20:22:46",
-      "updatedAt": "2023.11.16 15:33:41",
+      "updatedAt": "2023.11.16 16:13:26",
       "done": true
     },
     {
@@ -29,7 +13,8 @@
       "title": "TodoList 필터 추가",
       "content": "- sort\n- filter",
       "createdAt": "2023.11.16 14:40:07",
-      "updatedAt": "2023.11.16 14:40:07"
+      "updatedAt": "2023.11.16 16:13:39",
+      "done": false
     }
   ],
   "users": [],
