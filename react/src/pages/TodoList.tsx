@@ -78,7 +78,6 @@ export default function TodoList() {
 
   return (
     <Page>
-      <Title>To Do List</Title>
       <input 
         type="text"
         onChange={getInputValue} 
