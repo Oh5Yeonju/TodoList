@@ -131,9 +131,7 @@ export default function TodoInfo() {
     <div>
       <div id="app">
         <div id="page">
-          <h1>TODO DETAIL</h1>
           <button onClick={handleToHome}>HOME</button>
-          {/* <Link to='/'>HOME</Link> */}
 
           <TodoDetailWrap>
             <PatchBox>

@@ -27,8 +27,6 @@ export default function TodoRegist() {
   return (
     <>
       <PageStyle id='page'>
-        <h1>TODO 등록</h1>
-
         <form
           className='regist-form'
           onSubmit={handleSubmit}
